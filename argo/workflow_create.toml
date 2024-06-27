@@ -1,0 +1,20 @@
+namespace = "argo"
+serverDryRun = false
+
+[workflow.metadata]
+generateName = "hello-world-"
+namespace = "argo"
+
+[workflow.metadata.labels]
+"workflows.argoproj.io/completed" = "false"
+
+[workflow.spec]
+entrypoint = "whalesay"
+
+[[workflow.spec.templates]]
+name = "whalesay"
+
+[workflow.spec.templates.container]
+image = "docker/whalesay:latest"
+command = ["cowsay"]
+args = ["hello world"]

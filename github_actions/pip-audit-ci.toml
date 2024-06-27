@@ -1,0 +1,29 @@
+name = "CI"
+
+[on]
+[on.push]
+branches = [ "main" ]
+
+[[on.schedule]]
+cron = "0 12 * * *"
+
+[jobs.test]
+runs-on = "ubuntu-latest"
+
+[jobs.test.strategy.matrix]
+python = [ "3.8", "3.9", "3.10", "3.11", "3.12" ]
+
+[[jobs.test.steps]]
+uses = "actions/checkout@v4.1.1"
+
+[[jobs.test.steps]]
+uses = "actions/setup-python@v5"
+
+[jobs.test.steps.with]
+python-version = "${{ matrix.python }}"
+cache = "pip"
+cache-dependency-path = "pyproject.toml"
+
+[[jobs.test.steps]]
+name = "test"
+run = "make test PIP_AUDIT_EXTRA=test"

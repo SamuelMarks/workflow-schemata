@@ -1,0 +1,4 @@
+dag_id = "dag_file_1"
+schedule = "'@daily'"
+bash_command = "'echo $ENVVAR'"
+env_var = "'Hello! :)'"

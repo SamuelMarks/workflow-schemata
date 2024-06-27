@@ -1,0 +1,11 @@
+[package]
+name = "workflow-schemata"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+acts = "0.10.4"
+github-actions-models = { git = "https://github.com/SamuelMarks/github-actions-models", branch = "derivative-trading" }
+indexmap = { version = "2.2.6", features = ["serde"] }
+serde = { version = "1.0.203", features = ["serde_derive"] }
+toml = "0.8.14"

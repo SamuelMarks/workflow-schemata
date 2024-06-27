@@ -1,0 +1,33 @@
+[example_dag1]
+schedule_interval = "0 3 * * *"
+concurrency = 1
+max_active_runs = 1
+dagrun_timeout_sec = 60
+default_view = "tree"
+orientation = "LR"
+description = "this is an example dag!"
+on_success_callback_name = "print_hello"
+on_success_callback_file = "/usr/local/airflow/dags/print_hello.py"
+on_failure_callback_name = "print_hello"
+on_failure_callback_file = "/usr/local/airflow/dags/print_hello.py"
+
+[example_dag1.default_args]
+owner = "example_owner"
+start_date = "2018-01-01"
+end_date = "2018-01-05"
+retries = 1
+retry_delay_sec = 300
+
+[example_dag1.tasks.task_1]
+operator = "airflow.operators.bash_operator.BashOperator"
+bash_command = "echo 1"
+
+[example_dag1.tasks.task_2]
+operator = "airflow.operators.bash_operator.BashOperator"
+bash_command = "echo 2"
+dependencies = [ "task_1" ]
+
+[example_dag1.tasks.task_3]
+operator = "airflow.operators.bash_operator.BashOperator"
+bash_command = "echo 3"
+dependencies = [ "task_1" ]

@@ -1,0 +1,7 @@
+operator = "airflow.operators.bash.BashOperator"
+
+[multi_task_spec.bash_task_1]
+bash_command = "echo first_task"
+
+[multi_task_spec.bash_task_2]
+bash_command = "echo second_task"
