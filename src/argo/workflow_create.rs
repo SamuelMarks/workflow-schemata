@@ -46,14 +46,14 @@ pub struct Template {
 #[serde(rename_all = "camelCase")]
 pub struct Arguments {
     artifacts: Option<Vec<Artifact>>,
-    parameters: Option<Vec<Parameters>>
+    parameters: Option<Vec<Parameters>>,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Inputs {
     artifacts: Option<Vec<Artifact>>,
-    parameters: Option<Vec<Parameters>>
+    parameters: Option<Vec<Parameters>>,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -66,8 +66,7 @@ pub struct Parameters {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Outputs {
-}
+pub struct Outputs {}
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -81,5 +80,4 @@ pub struct Container {
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Resources {
-}
+pub struct Resources {}

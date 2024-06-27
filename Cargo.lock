@@ -1753,5 +1753,6 @@ dependencies = [
  "github-actions-models",
  "indexmap 2.2.6",
  "serde",
+ "serde_json",
  "toml",
 ]

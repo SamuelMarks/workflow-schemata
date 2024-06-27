@@ -1,0 +1,48 @@
+{
+  "pipeline": {
+    "transforms": [
+      {
+        "type": "ReadFromCsv",
+        "name": "ReadInputFile",
+        "config": {
+          "path": "gs://apache-beam-samples/beam-yaml-blog/products.csv"
+        }
+      },
+      {
+        "type": "Filter",
+        "name": "FilterWithCategory",
+        "input": "ReadInputFile",
+        "config": {
+          "language": "python",
+          "keep": "category == \"Electronics\""
+        }
+      },
+      {
+        "type": "Combine",
+        "name": "CountNumberSold",
+        "input": "FilterWithCategory",
+        "config": {
+          "group_by": "product_name",
+          "combine": {
+            "num_sold": {
+              "value": "product_name",
+              "fn": "count"
+            },
+            "total_revenue": {
+              "value": "price",
+              "fn": "sum"
+            }
+          }
+        }
+      },
+      {
+        "type": "WriteToCsv",
+        "name": "WriteOutputFile",
+        "input": "CountNumberSold",
+        "config": {
+          "path": "output"
+        }
+      }
+    ]
+  }
+}

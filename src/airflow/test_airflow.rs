@@ -9,15 +9,12 @@ mod test_dyn {
             bash_command: String::from("'echo $ENVVAR'"),
             env_var: String::from("'Hello! :)'"),
         };
-        const AIRFLOW_DYNAMIC: &'static str = include_str!(
-            "../../airflow/dynamic.toml"
-        );
+        const AIRFLOW_DYNAMIC: &'static str = include_str!("../../airflow/dynamic.toml");
         let expect: AirflowDynamic = toml::from_str(AIRFLOW_DYNAMIC).unwrap();
 
         assert_eq!(actual, expect)
     }
 }
-
 
 mod test_gusty {
     use crate::airflow::gusty::*;
@@ -31,9 +28,7 @@ mod test_gusty {
                 String::from("bash_task_2") => String::from("echo second_task"),
             },
         };
-        const GUSTY_DYNAMIC: &'static str = include_str!(
-            "../../airflow/gusty.toml"
-        );
+        const GUSTY_DYNAMIC: &'static str = include_str!("../../airflow/gusty.toml");
         let expect: AirflowGusty = toml::from_str(GUSTY_DYNAMIC).unwrap();
 
         assert_eq!(actual, expect)
@@ -47,9 +42,7 @@ mod test_dag_factory {
         let actual = AirflowDagFactory {
             example_dag1: Default::default(),
         };
-        const GUSTY_DYNAMIC: &'static str = include_str!(
-            "../../airflow/dag_factory.toml"
-        );
+        const GUSTY_DYNAMIC: &'static str = include_str!("../../airflow/dag_factory.toml");
         let expect: AirflowDagFactory = toml::from_str(GUSTY_DYNAMIC).unwrap();
 
         assert_eq!(actual, expect)

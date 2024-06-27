@@ -1,0 +1,22 @@
+[[pipeline.transforms]]
+type = "ReadFromCsv"
+name = "ReadInputFile"
+config = { path = "gs://apache-beam-samples/beam-yaml-blog/products.csv" }
+
+[[pipeline.transforms]]
+type = "Filter"
+name = "FilterWithCategory"
+input = "ReadInputFile"
+config = { language = "python", keep = 'category == "Electronics"' }
+
+[[pipeline.transforms]]
+type = "Combine"
+name = "CountNumberSold"
+input = "FilterWithCategory"
+config = { group_by = "product_name", combine = { num_sold = { value = "product_name", fn = "count" }, total_revenue= { value = "price", fn = "sum" } } }
+
+[[pipeline.transforms]]
+type = "WriteToCsv"
+name = "WriteOutputFile"
+input = "CountNumberSold"
+config = { path = "output" }

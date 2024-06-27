@@ -1,7 +1,9 @@
-mod argo;
-mod airflow;
-mod github_actions;
 mod acts;
+mod airflow;
+mod argo;
+mod beam;
+mod github_actions;
+mod mlflow;
 
 pub fn add(left: usize, right: usize) -> usize {
     left + right
